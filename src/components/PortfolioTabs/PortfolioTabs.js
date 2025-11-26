@@ -8,7 +8,7 @@ import DistrictDetails from "../DistrictDetails/DistrictDetails";
 import State from "../State/State";
 
 import "./PortfolioTabs.css";
-const colorizeWords = (text) => {
+const colorizeWords = (text) => {  
   const colors = [
     "#e63946", "#457b9d", "#ffb703", "#8d99ae", "#06d6a0", "#ef476f",
     "#118ab2", "#ff7f51", "#073b4c", "#7b2cbf", "#f72585", "#4361ee",
