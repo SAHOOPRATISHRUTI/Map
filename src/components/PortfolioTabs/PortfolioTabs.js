@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 
-import India from "../India/India";
-import Odisha from "../Odisha/Odisha";
-import DistrictList from "../DistrictList/DistrictList";
-import DistrictDetails from "../DistrictDetails/DistrictDetails";
-import State from "../State/State";
+import India from "../India/India.js";
+import Odisha from "../Odisha/Odisha.js";
+import DistrictList from "../DistrictList/DistrictList.js";
+import DistrictDetails from "../DistrictDetails/DistrictDetails.js";
+import State from "../State/State.js";
 
 import "./PortfolioTabs.css";
 const colorizeWords = (text) => {  
