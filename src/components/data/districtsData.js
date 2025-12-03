@@ -79,7 +79,7 @@ const districtsData = {
 
   },
   cuttack: {
-    name: "Cuttack-(କଟକ)",
+    name: "Cuttack-(କଟକ)",      
     description: "Cuttack is famous for silver filigree and Durga Puja.",
     photos: [],
     tourism: ["Barabati Fort", "Mahanadi River Ghat"],
