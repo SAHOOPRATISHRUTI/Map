@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import indiaData from "../data/indiaData.js";
-import { FaCheckCircle } from "react-icons/fa/index.esm.js";
+import { FaCheckCircle } from "react-icons/fa";
 import { Modal, Box, Typography } from "@mui/material";
 
 const India = () => {
