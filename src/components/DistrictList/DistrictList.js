@@ -1,5 +1,5 @@
 import React from "react";
-import districtsData from "../data/districtsData";
+import districtsData from "../data/districtsData.js";
 
 const DistrictList = ({ onSelect }) => {
   const districtKeys = Object.keys(districtsData);

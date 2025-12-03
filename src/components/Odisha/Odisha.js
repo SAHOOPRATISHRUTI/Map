@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import odishaData from "../data/odishaData";
-import { FaCheckCircle } from "react-icons/fa";
+import React, { useState, useEffect, useRef } from "react";
+import odishaData from "../data/odishaData.js";
+import "./OdishaBook.css";
 import {
   Modal,
   Box,
@@ -10,46 +10,90 @@ import {
   Divider,
   IconButton,
 } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+export default function OdishaBook() {
+  const [currentPage, setCurrentPage] = useState(0);
+  const [highlights, setHighlights] = useState({});
+  const pagesRef = useRef([]);
 
-const modalStyle = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  bgcolor: "#fefefe",
-  borderRadius: "16px",
-  boxShadow: 24,
-  p: 4,
-  width: "95%",
-  maxWidth: "600px",
-  maxHeight: "85vh",
-  overflowY: "auto",
-};
+  // Split categories into pages (2 per spread)
+  const pages = [];
+  for (let i = 0; i < odishaData.categories.length; i += 2) {
+    pages.push({
+      left: odishaData.categories[i],
+      right: odishaData.categories[i + 1] || null,
+    });
+  }
 
-export default function Odisha() {
-  const [open, setOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  // Load highlights
+  useEffect(() => {
+    const saved = localStorage.getItem("odishaHighlights");
+    if (saved) setHighlights(JSON.parse(saved));
+  }, []);
 
-  const openModal = (category) => {
-    setSelectedCategory(category);
-    setOpen(true);
+  // Save highlights
+  useEffect(() => {
+    localStorage.setItem("odishaHighlights", JSON.stringify(highlights));
+  }, [highlights]);
+
+  // Navigation
+  const nextPage = () =>
+    currentPage < pages.length - 1 && setCurrentPage(currentPage + 1);
+  const prevPage = () =>
+    currentPage > 0 && setCurrentPage(currentPage - 1);
+
+  // Highlight selected text
+  const handleHighlight = (side) => {
+    const sel = window.getSelection();
+    if (!sel || sel.toString().trim() === "") return;
+
+    const text = sel.toString();
+    const key = `${currentPage}-${side}`;
+    setHighlights((prev) => {
+      const existing = prev[key] || [];
+      if (existing.includes(text)) return prev;
+      return { ...prev, [key]: [...existing, text] };
+    });
+    sel.removeAllRanges();
   };
 
-  const closeModal = () => setOpen(false);
+  const renderCategory = (category, side) => {
+    if (!category) return null;
+    const key = `${currentPage}-${side}`;
+    const pageHighlights = highlights[key] || [];
+
+    // Each item on a separate line, label bold
+    let content = category.items
+      .map((i) => `<strong>${i.label}:</strong> ${i.value}`)
+      .join("<br>");
+
+    // Apply highlights
+    pageHighlights.forEach((hl) => {
+      const escaped = hl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const regex = new RegExp(`(${escaped})`, "gi");
+      content = content.replace(regex, '<mark>$1</mark>');
+    });
+
+    return (
+      <div
+        className="category-card"
+        onMouseUp={() => handleHighlight(side)}
+      >
+        <div className="category-header">
+          <span className="category-title">{category.title}</span>
+          <span className="category-icon">📖</span>
+        </div>
+        <div
+          className="category-body"
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      </div>
+    );
+  };
 
   return (
-    <div className="container py-4">
-      {/* Header */}
-      <h2 className="text-center fw-bold mb-2" style={{ fontSize: "32px" }}>
-        About <span className="text-primary">{odishaData.name}</span>
-      </h2>
-      <p className="text-center text-muted mb-4" style={{ fontSize: "15px" }}>
-        A reading-friendly overview of Odisha — culture, history, symbols,
-        population, language & more.
-      </p>
+    <div className="book-wrapper">
+      <h2 className="book-main-title">About {odishaData.name}</h2>
 
-      {/* MAP + BASIC INFO */}
       <div className="row mb-5 align-items-center">
         <div className="col-md-6 text-center mb-3">
           <img
@@ -66,15 +110,15 @@ export default function Odisha() {
         </div>
 
         <div className="col-md-6">
-          <Card
+          <div
             sx={{
               borderRadius: "16px",
               background: "#f6f9ff",
             }}
           >
-            <CardContent style={{ lineHeight: "1.8", fontSize: "15px" }}>
+            <CardContent >
               <p>{odishaData.description}</p>
-              <Divider className="my-2" />
+              <Divider  />
               <p><strong>Total Area:</strong> 1,55,707 km²</p>
               <p><strong>Formation Day:</strong> {odishaData.formationDay}</p>
               <p><strong>Old Names:</strong> {odishaData.oldNames}</p>
@@ -82,83 +126,43 @@ export default function Odisha() {
               <p><strong>Blocks:</strong> {odishaData.Blocks}</p>
               <p><strong>Tahasil:</strong> {odishaData.Tahasil}</p>
             </CardContent>
-          </Card>
+          </div>
+        </div>
+      </div>
+      {/* Book Pages */}
+      <div className="book">
+        <div
+          className="page-spread-container"
+          style={{ transform: `translateX(-${currentPage * 100}%)` }}
+        >
+          {pages.map((spread, idx) => (
+            <div key={idx} className="page-spread">
+              <div className="page page-left">
+                {renderCategory(spread.left, "left")}
+              </div>
+              <div className="page page-right">
+                {spread.right && renderCategory(spread.right, "right")}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* CATEGORY CARDS */}
-      <div className="row">
-        {odishaData.categories.map((category, i) => {
-          const preview = category.items.slice(0, 2); // show only first 2 items
-
-          return (
-            <div key={i} className="col-md-6 mb-4">
-              <Card
-                sx={{
-                  borderRadius: "16px",
-                  background: category.color,
-                  cursor: "pointer",
-                  transition: "0.3s",
-                  "&:hover": { transform: "scale(1.02)" },
-                  boxShadow: "0 4px 15px rgba(0,0,0,0.08)",
-                }}
-                onClick={() => openModal(category)}
-              >
-                <CardContent>
-                  <h5 className="fw-bold d-flex align-items-center mb-3">
-                    <FaCheckCircle className="me-2 text-primary" />
-                    {category.title}
-                  </h5>
-
-                  <ul style={{ paddingLeft: "18px", fontSize: "14px" }}>
-                    {preview.map((item, idx) => (
-                      <li key={idx} className="mb-1">
-                        <strong>{item.label}:</strong> {item.value}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <p
-                    className="mt-2 fw-semibold text-primary"
-                    style={{ cursor: "pointer" }}
-                  >
-                    Read More →
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          );
-        })}
+      {/* Controls */}
+      <div className="book-controls">
+        <button onClick={prevPage} disabled={currentPage === 0}>
+          ← Previous
+        </button>
+        <span>
+          Page {currentPage + 1} of {pages.length}
+        </span>
+        <button
+          onClick={nextPage}
+          disabled={currentPage === pages.length - 1}
+        >
+          Next →
+        </button>
       </div>
-
-      {/* MODAL */}
-      <Modal open={open} onClose={closeModal}>
-        <Box sx={modalStyle}>
-          <div className="d-flex justify-content-between align-items-center mb-3">
-            <Typography
-              variant="h6"
-              className="fw-bold d-flex align-items-center"
-              style={{ fontSize: "20px" }}
-            >
-              <FaCheckCircle className="me-2 text-primary" />
-              {selectedCategory?.title}
-            </Typography>
-            <IconButton onClick={closeModal}>
-              <CloseIcon />
-            </IconButton>
-          </div>
-
-          <Divider className="mb-3" />
-
-          <ul style={{ paddingLeft: "20px", fontSize: "15px", lineHeight: "1.7" }}>
-            {selectedCategory?.items?.map((item, i) => (
-              <li key={i} className="mb-2">
-                <strong>{item.label}:</strong> {item.value}
-              </li>
-            ))}
-          </ul>
-        </Box>
-      </Modal>
     </div>
   );
 }
