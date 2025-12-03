@@ -1,5 +1,5 @@
 import React from "react";
-import districtsData from "../data/districtsData";
+import districtsData from "../data/districtsData.js";
 
 const DistrictDetails = ({ districtKey }) => {
   console.log(districtKey)

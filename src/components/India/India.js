@@ -1,32 +1,13 @@
 
 
 import React, { useState } from "react";
-import indiaData from "../data/indiaData";
-import { FaCheckCircle } from "react-icons/fa";
+import indiaData from "../data/indiaData.js";
+import { FaCheckCircle } from "react-icons/fa/index.esm.js";
 import { Modal, Box, Typography } from "@mui/material";
 
 const India = () => {
     const [open, setOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
-//   return (
-//     <div className="text-center p-4">
-//       <h3 className="fw-bold">About India</h3>
-//       <p>
-//         India is a diverse country known for its culture, festivals, languages,
-//         and heritage. It consists of 28 states and 8 union territories.
-//       </p>
-
-//       <img
-//         src="https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg"
-//         alt="India Flag"
-//         className="img-fluid mt-3"
-//         style={{ maxWidth: "200px" }}
-//       />
-//     </div>
-//   );
-// };
-
-
 
 const style = {
   position: "absolute",

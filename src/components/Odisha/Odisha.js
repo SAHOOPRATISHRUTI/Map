@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import odishaData from "../data/odishaData";
+import odishaData from "../data/odishaData.js";
 import "./OdishaBook.css";
 import {
   Modal,
