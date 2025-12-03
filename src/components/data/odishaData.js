@@ -1,10 +1,11 @@
 // src/data/odishaData.js
+import OdishaMap from "../../assests/Odisha/Odisha_districts_map.svg.png";
 
 const odishaData = {
   name: "Odisha",
   description:
     "Odisha is known for its rich culture, temples, classical dance (Odissi), beaches, and the world-famous Jagannath Temple.",
-  map: require("../../assests/Odisha/Odisha_districts_map.svg.png"),
+  map: OdishaMap,
 
   formationDay: "1st April 1936",
   oldNames: "Udra, Utkal, Kalinga, Kosala",
