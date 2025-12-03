@@ -4,7 +4,8 @@ const indiaData = {
   name: "India",
   description:
     "India is a diverse country known for its culture, festivals, languages,and heritage. It consists of 28 states and 8 union territories.",
-  map: require("https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg"),
+  map:"https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg"
+,
 
   formationDay: "1st April 1936",
   oldNames: "Udra, Utkal, Kalinga, Kosala",
