@@ -63,7 +63,7 @@ export default function OdishaBook() {
 
     // Each item on a separate line, label bold
     let content = category.items
-      .map((i) => `<strong>${i.label}:</strong> ${i.value}`)
+      .map((i) => `<strong>${i.label}-</strong> ${i.value}`)
       .join("<br>");
 
     // Apply highlights
@@ -79,6 +79,8 @@ export default function OdishaBook() {
         onMouseUp={() => handleHighlight(side)}
       >
         <div className="category-header">
+          
+<span className="category-title">{category.id}</span>
           <span className="category-title">{category.title}</span>
           <span className="category-icon">📖</span>
         </div>
