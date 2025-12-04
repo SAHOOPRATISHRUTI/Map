@@ -60,7 +60,7 @@ const odishaData = {
       ],
     },
 
-        {
+    {
       title: "Symbols Of Odisha",
       color: "#ff9fb7ff", // aqua
       items: [
@@ -79,13 +79,13 @@ const odishaData = {
         {
           label: "State Tree",
           value: "Ashwathha"
-          
+
         },
-          {
+        {
           label: "State Fish",
           value: "Mahanadi mahseer"
         },
-          {
+        {
           label: "State Song",
           value: "Bande Utkala Janani (2020) Kantakabi Laxmikanta Mohapatra"
         },
@@ -168,6 +168,82 @@ const odishaData = {
 
       ],
     },
+    // to be continue
+
+
+    {
+       id:"6",
+      title: "National Parks",
+      color: "#dffbff", // aqua
+      items: [
+        {
+          label: "Similipal National Park ",
+          value: " Tiger Reserve 🐯 (Mayurbhanj)"
+        },
+        {
+          label: "BhitaraKanika National Park",
+          value: " Saltwater Crocodile, White Crocodile 🐊 (Kendrapada)"
+        },
+        {
+          label: "Bird Sanctuary",
+          value: " Chilika"
+        },
+        {
+          label: "Satkosia Tiger Reserve 🐯",
+          value: " Angul "
+        },
+        {
+          label: "Hadgarh Wild Life Sanctuary",
+          value: " Mayurbhanj & Keonjhar"
+        },
+        {
+          label: "Nandankanan Zoo",
+          value: " Bhubaneswar - 1960"
+        },
+        {
+          label: "",
+          value: " Sal Tree Covers 33% of the forest odisha"
+        },
+        {
+          label: "",
+          value: " Odisha is the 3rd largest produce Of Kendu Leaf(Green Gold)"
+        },
+        {
+          label: "",
+          value: "Odisha Forest Development Cor. Pvt. Ltd. come into existence on 1962"
+        },
+      ],
+    },
+
+ {
+  id:"7",
+      title: "Rivers & Dam",
+      color: "#f1d0a5", // aqua
+
+      items: [
+        {
+          label: "Hirakud Dam",
+          value: "Situated On Mahanadi River - (Sambalpur)"
+        },
+        {
+          label: "Jalput Dam",
+          value: "Situated On Machkunda River - (Odisha - A.P Border)"
+        },
+        {
+          label: "Rengali Dam",
+          value: "Situated On Brahmani River - (Anugul)"
+        },
+        {
+          label: "Mandira Dam",
+          value: "Situated On Sank River - (Sundrargah)"
+        },
+         {
+          label: "Patora Dam",
+          value: "Situated On Jonk River - (Nuapada)"
+        },
+      ],
+    },
+
 
   ]
 };

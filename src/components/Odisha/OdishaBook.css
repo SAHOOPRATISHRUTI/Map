@@ -63,7 +63,7 @@
   flex: 1;
   background: #ffffff;
   border-radius: 12px;
-  padding: 20px;
+  /* padding: 20px; */
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
   min-height: 300px;
   overflow-y: auto;
@@ -79,11 +79,12 @@
 
 /* Category card */
 .category-card {
-  background: #fdfdfd;
+  background: #f1d0a5;
   padding: 15px 18px;
   border-radius: 8px;
-  margin-bottom: 16px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  
+  /* margin-bottom: 16px; */
+  /* box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08); */
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -110,14 +111,18 @@
 }
 
 .category-body {
-  font-size: 14px;
+  font-size: 17px;
   line-height: 1.8;
-  color: #444;
+  color: #000000;
 }
 
 /* Highlight style */
 mark {
+<<<<<<< HEAD
   background: #7aff3d;
+=======
+  background: #bcff75 !important;
+>>>>>>> bdb5f1620db81e1d608da3aec027efb3ceba94d9
   border-radius: 2px;
   padding: 0 2px;
 }
