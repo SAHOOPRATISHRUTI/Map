@@ -172,7 +172,7 @@ const odishaData = {
 
 
     {
-       id:"6",
+      id: "6",
       title: "National Parks",
       color: "#dffbff", // aqua
       items: [
@@ -215,8 +215,8 @@ const odishaData = {
       ],
     },
 
- {
-  id:"7",
+    {
+      id: "7",
       title: "Rivers & Dam",
       color: "#f1d0a5", // aqua
 
@@ -237,14 +237,155 @@ const odishaData = {
           label: "Mandira Dam",
           value: "Situated On Sank River - (Sundrargah)"
         },
-         {
+        {
           label: "Patora Dam",
           value: "Situated On Jonk River - (Nuapada)"
+        },
+         {
+          label: "Odisha's largest Dam ",
+          value: " Hirakud (1957) by Neheru"
+        },
+        {
+          label: " ",
+          value: " Asia's largest Brackish Water lagon Chilika"
+        },
+        {
+          label: " ",
+          value: " Odisha's largest freshwater lake Anshupa"
+        },
+        {
+          label: " ",
+          value: " India's largest freshwater lake Ullar"
+        },
+        {
+          label: " ",
+          value: " Kanjia Lake ( କାଞ୍ଜିଆ ହ୍ରଦ) is a natural lake on the northern outskirts of Bhubaneswar Nandankana Zoo"
+
+        },
+        {
+          label: " ",
+          value: " Baitarani River Primarily flows through at Keonjhar District"
+        },
+        {
+          label: " ",
+          value: " Dam is located near the town of sunabeda in koraput District Upper kolab dam"
+        },
+        {
+          label: " ",
+          value: " Balimela dam constructed on Sileru River"
+        },
+         {
+          label: " ",
+          value: " Rengali dam constructed on Bramhani River"
+        },
+        {
+          label: " ",
+          value: " Mandira dam constructed for industrial water supply on Sankha River"
+        },
+         {
+          label: " ",
+          value: " Tampara lakes lies in Ganjam"
+        },
+         {
+          label: " ",
+          value: " Horse Shoe Shaped Fresh Water lake Ansupa"
+        },
+         {
+          label: " ",
+          value: " The Other name of Sileru River is Machakund"
+        },
+        {
+          label: " ",
+          value: " The Other name of Sileru River is Machakund"
         },
       ],
     },
 
+  {
+      id: "8",
+      title: "Rivers & Dam",
+      color: "#f1d0a5", // aqua
 
+      items: [
+        {
+          label: "Hirakud Dam",
+          value: "Situated On Mahanadi River - (Sambalpur)"
+        },
+        {
+          label: "Jalput Dam",
+          value: "Situated On Machkunda River - (Odisha - A.P Border)"
+        },
+        {
+          label: "Rengali Dam",
+          value: "Situated On Brahmani River - (Anugul)"
+        },
+        {
+          label: "Mandira Dam",
+          value: "Situated On Sank River - (Sundrargah)"
+        },
+        {
+          label: "Patora Dam",
+          value: "Situated On Jonk River - (Nuapada)"
+        },
+         {
+          label: "Odisha's largest Dam ",
+          value: " Hirakud (1957) by Neheru"
+        },
+        {
+          label: " ",
+          value: " Asia's largest Brackish Water lagon Chilika"
+        },
+        {
+          label: " ",
+          value: " Odisha's largest freshwater lake Anshupa"
+        },
+        {
+          label: " ",
+          value: " India's largest freshwater lake Ullar"
+        },
+        {
+          label: " ",
+          value: " Kanjia Lake ( କାଞ୍ଜିଆ ହ୍ରଦ) is a natural lake on the northern outskirts of Bhubaneswar Nandankana Zoo"
+
+        },
+        {
+          label: " ",
+          value: " Baitarani River Primarily flows through at Keonjhar District"
+        },
+        {
+          label: " ",
+          value: " Dam is located near the town of sunabeda in koraput District Upper kolab dam"
+        },
+        {
+          label: " ",
+          value: " Balimela dam constructed on Sileru River"
+        },
+         {
+          label: " ",
+          value: " Rengali dam constructed on Bramhani River"
+        },
+        {
+          label: " ",
+          value: " Mandira dam constructed for industrial water supply on Sankha River"
+        },
+         {
+          label: " ",
+          value: " Tampara lakes lies in Ganjam"
+        },
+         {
+          label: " ",
+          value: " Horse Shoe Shaped Fresh Water lake Ansupa"
+        },
+         {
+          label: " ",
+          value: " The Other name of Sileru River is Machakund"
+        },
+        {
+          label: " ",
+          value: " The Other name of Sileru River is Machakund"
+        },
+      ],
+    },
   ]
 };
 
