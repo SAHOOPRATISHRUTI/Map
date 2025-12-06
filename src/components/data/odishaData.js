@@ -1,5 +1,20 @@
 // src/data/odishaData.js
 import OdishaMap from "../../assests/Odisha/Odisha_districts_map.svg.png";
+const pastelColors = [
+  "#FDE2FF", "#E3F2FD", "#FFF4D6", "#E8FFEC", "#FFE8E8", "#E2F6FF",
+  "#F9E7FF", "#E9FFFA", "#FFF6EA", "#E5ECFF", "#FFE5EF", "#F1FFE3",
+
+  // 🔥 Newly Added Soft Pastel Palette
+  "#FFECD9", "#DCF6E8", "#EDE7FF", "#FFE6F2", "#F6FDC3", "#D2E3FC",
+  "#D7F2FF", "#FFECD1", "#E1FFE3", "#FFF1F1", "#F7EFFF", "#DFF7FA",
+  "#FAF4C0", "#E4D8FF", "#FCDDEC", "#F3FFD9", "#E2F4FF", "#FFDDE2",
+  "#D9FFE6", "#FFF7D6", "#E3E0FF", "#FFC8E6", "#D4FCF3", "#FFF2C7",
+  "#CFE8FF", "#FFD6DE", "#D8F7FF", "#FFF0DE", "#E5FFD0", "#FAD7FE",
+  "#C7F6FF", "#FFE6C5", "#D0FFEA", "#F9DFFD", "#FFF9D4", "#D9EEFF"
+];
+
+
+export const getLightColor = () => pastelColors[Math.floor(Math.random() * pastelColors.length)];
 
 const odishaData = {
   name: "Odisha",
@@ -15,7 +30,7 @@ const odishaData = {
   categories: [
     {
       title: "General Facts",
-      color: "#dffbff", // aqua
+      color: "#ffffff", // aqua
       items: [
         //  { label: "Blocks", value: "314" },
         //   { label: "Tahasil", value: "317" },
@@ -35,7 +50,7 @@ const odishaData = {
 
     {
       title: "Boundary",
-      color: "#dffbff", // aqua
+      color: "#ffffff", // aqua
       items: [
         {
           label: "Total Boundaries",
@@ -62,7 +77,7 @@ const odishaData = {
 
     {
       title: "Symbols Of Odisha",
-      color: "#ff9fb7ff", // aqua
+      color: "#ffffff", // aqua
       items: [
         {
           label: "State Animal",
@@ -94,7 +109,7 @@ const odishaData = {
     },
     {
       title: "Population (2011 Census)",
-      color: "#ffcd9fff", // aqua
+      color: "#ffffff", // aqua
       items: [
         {
           label: "Total Population",
@@ -147,7 +162,7 @@ const odishaData = {
 
     {
       title: "Language",
-      color: "#ff9fb7ff", // aqua
+      color: "#ffffff", // aqua
       items: [
         {
           label: "Official Language",
@@ -174,7 +189,7 @@ const odishaData = {
     {
       id: "6",
       title: "National Parks",
-      color: "#dffbff", // aqua
+      color: "#ffffff", // aqua
       items: [
         {
           label: "Similipal National Park ",
@@ -218,7 +233,7 @@ const odishaData = {
     {
       id: "7",
       title: "Rivers & Dam",
-      color: "#f1d0a5", // aqua
+      color: "#ffffff", // aqua
 
       items: [
         {
@@ -241,7 +256,7 @@ const odishaData = {
           label: "Patora Dam",
           value: "Situated On Jonk River - (Nuapada)"
         },
-         {
+        {
           label: "Odisha's largest Dam ",
           value: " Hirakud (1957) by Neheru"
         },
@@ -274,7 +289,7 @@ const odishaData = {
           label: " ",
           value: " Balimela dam constructed on Sileru River"
         },
-         {
+        {
           label: " ",
           value: " Rengali dam constructed on Bramhani River"
         },
@@ -282,107 +297,71 @@ const odishaData = {
           label: " ",
           value: " Mandira dam constructed for industrial water supply on Sankha River"
         },
-         {
+        {
           label: " ",
           value: " Tampara lakes lies in Ganjam"
         },
-         {
+        {
           label: " ",
           value: " Horse Shoe Shaped Fresh Water lake Ansupa"
-        },
-         {
-          label: " ",
-          value: " The Other name of Sileru River is Machakund"
         },
         {
           label: " ",
           value: " The Other name of Sileru River is Machakund"
+        }
+      ],
+    },
+    {
+      id: "8",
+      title: "Ramsar Sites ",
+      color: "#ffffff", // aqua
+      items: [
+        {
+          label: "Ramsar Sites Starts on",
+          value: "02 Feb 1971"
+        },
+        {
+          label: "Number of sites",
+          value: "94"
+        },
+        {
+          label: "First Ramsar Sites",
+          value: "Chilika on 1981"
+        },
+        {
+          label: "Highest number of sites",
+          value: "Tamilnadu (20)"
+        },
+        {
+          label: "",
+          value: "Odisha has six designated Ramsar Sites - Chilika Lake, Bhitarkanika Mangroves, Satkosia Gorge, Hirakud Reservoir, Ansupa Lake, and Tampara Lake"
+        },
+        {
+          label: "",
+          value: "India has recently added 3 Ramsar Sites, in August 2024 being Nanjarayan Bird Sanctuary, Kazhuveli Bird Sanctuary (Tamil Nadu), and Tawa Reservoir (Madhya Pradesh)"
         },
       ],
     },
-
   {
-      id: "8",
-      title: "Rivers & Dam",
-      color: "#f1d0a5", // aqua
-
+      id: "9",
+      title: "Seaports",
+      color: "#ffffff", // aqua
       items: [
-        {
-          label: "Hirakud Dam",
-          value: "Situated On Mahanadi River - (Sambalpur)"
-        },
-        {
-          label: "Jalput Dam",
-          value: "Situated On Machkunda River - (Odisha - A.P Border)"
-        },
-        {
-          label: "Rengali Dam",
-          value: "Situated On Brahmani River - (Anugul)"
-        },
-        {
-          label: "Mandira Dam",
-          value: "Situated On Sank River - (Sundrargah)"
-        },
-        {
-          label: "Patora Dam",
-          value: "Situated On Jonk River - (Nuapada)"
-        },
+     
+    
          {
-          label: "Odisha's largest Dam ",
-          value: " Hirakud (1957) by Neheru"
+          label: "",
+          value: "Odisha's coastline is officially measured at 574.71 km1"
         },
-        {
-          label: " ",
-          value: " Asia's largest Brackish Water lagon Chilika"
-        },
-        {
-          label: " ",
-          value: " Odisha's largest freshwater lake Anshupa"
-        },
-        {
-          label: " ",
-          value: " India's largest freshwater lake Ullar"
-        },
-        {
-          label: " ",
-          value: " Kanjia Lake ( କାଞ୍ଜିଆ ହ୍ରଦ) is a natural lake on the northern outskirts of Bhubaneswar Nandankana Zoo"
 
-        },
-        {
-          label: " ",
-          value: " Baitarani River Primarily flows through at Keonjhar District"
-        },
-        {
-          label: " ",
-          value: " Dam is located near the town of sunabeda in koraput District Upper kolab dam"
-        },
-        {
-          label: " ",
-          value: " Balimela dam constructed on Sileru River"
-        },
+        
          {
-          label: " ",
-          value: " Rengali dam constructed on Bramhani River"
+          label: "Majort Port",
+          value: "Paradip Port"
         },
-        {
-          label: " ",
-          value: " Mandira dam constructed for industrial water supply on Sankha River"
-        },
-         {
-          label: " ",
-          value: " Tampara lakes lies in Ganjam"
-        },
-         {
-          label: " ",
-          value: " Horse Shoe Shaped Fresh Water lake Ansupa"
-        },
-         {
-          label: " ",
-          value: " The Other name of Sileru River is Machakund"
-        },
-        {
-          label: " ",
-          value: " The Other name of Sileru River is Machakund"
+            {
+          label: "Minor Port",
+          value: "Paradip Port"
         },
       ],
     },

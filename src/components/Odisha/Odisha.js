@@ -1,170 +1,137 @@
-import React, { useState, useEffect, useRef } from "react";
-import odishaData from "../data/odishaData.js";
-import "./OdishaBook.css";
-import {
-  Modal,
-  Box,
-  Typography,
-  Card,
-  CardContent,
-  Divider,
-  IconButton,
-} from "@mui/material";
-export default function OdishaBook() {
-  const [currentPage, setCurrentPage] = useState(0);
-  const [highlights, setHighlights] = useState({});
-  const pagesRef = useRef([]);
+import React, { useState } from "react";
+import odishaData, { getLightColor } from "../data/odishaData.js";
+import { FaCheckCircle } from "react-icons/fa/index.esm.js";
+import { Modal, Box, Typography } from "@mui/material";
 
-  // Split categories into pages (2 per spread)
-  const pages = [];
-  for (let i = 0; i < odishaData.categories.length; i += 2) {
-    pages.push({
-      left: odishaData.categories[i],
-      right: odishaData.categories[i + 1] || null,
-    });
-  }
+export default function Odisha() {
 
-  // Load highlights
-  useEffect(() => {
-    const saved = localStorage.getItem("odishaHighlights");
-    if (saved) setHighlights(JSON.parse(saved));
-  }, []);
+  const [open, setOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
-  // Save highlights
-  useEffect(() => {
-    localStorage.setItem("odishaHighlights", JSON.stringify(highlights));
-  }, [highlights]);
-
-  // Navigation
-  const nextPage = () =>
-    currentPage < pages.length - 1 && setCurrentPage(currentPage + 1);
-  const prevPage = () =>
-    currentPage > 0 && setCurrentPage(currentPage - 1);
-
-  // Highlight selected text
-  const handleHighlight = (side) => {
-    const sel = window.getSelection();
-    if (!sel || sel.toString().trim() === "") return;
-
-    const text = sel.toString();
-    const key = `${currentPage}-${side}`;
-    setHighlights((prev) => {
-      const existing = prev[key] || [];
-      if (existing.includes(text)) return prev;
-      return { ...prev, [key]: [...existing, text] };
-    });
-    sel.removeAllRanges();
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    bgcolor: "white",
+    borderRadius: "14px",
+    boxShadow: 30,
+    width: "92%",
+    maxWidth: "1050px",
+    maxHeight: "90vh",
+    overflow: "hidden",
+    p: 0,
   };
 
-  const renderCategory = (category, side) => {
-    if (!category) return null;
-    const key = `${currentPage}-${side}`;
-    const pageHighlights = highlights[key] || [];
-
-    // Each item on a separate line, label bold
-    let content = category.items
-      .map((i) => `<strong>${i.label}-</strong> ${i.value}`)
-      .join("<br>");
-
-    // Apply highlights
-    pageHighlights.forEach((hl) => {
-      const escaped = hl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      const regex = new RegExp(`(${escaped})`, "gi");
-      content = content.replace(regex, '<mark>$1</mark>');
-    });
-
-    return (
-      <div
-        className="category-card"
-        onMouseUp={() => handleHighlight(side)}
-      >
-        <div className="category-header">
-          
-<span className="category-title">{category.id}</span>
-          <span className="category-title">{category.title}</span>
-          <span className="category-icon">📖</span>
-        </div>
-        <div
-          className="category-body"
-          dangerouslySetInnerHTML={{ __html: content }}
-        />
-      </div>
-    );
+  const openModal = (category) => {
+    setSelectedCategory(category);
+    setOpen(true);
   };
 
   return (
-    <div className="book-wrapper">
-      <h2 className="book-main-title">About {odishaData.name}</h2>
+    <div className="container py-4">
 
-      <div className="row mb-5 align-items-center">
-        <div className="col-md-6 text-center mb-3">
-          <img
-            src={odishaData.map}
-            alt="Odisha Map"
-            className="img-fluid rounded"
-            style={{
-              maxWidth: "360px",
-              border: "1px solid #ddd",
-              padding: "8px",
-              background: "#fff",
-            }}
-          />
-        </div>
+      {/* ✨ GRID CARDS */}
+      <div className="row">
+        {odishaData.categories.map((category, index) => {
+          const preview = category.items.slice(0, 2);
 
-        <div className="col-md-6">
-          <div
-            sx={{
-              borderRadius: "16px",
-              background: "#f6f9ff",
-            }}
-          >
-            <CardContent >
-              <p>{odishaData.description}</p>
-              <Divider  />
-              <p><strong>Total Area:</strong> 1,55,707 km²</p>
-              <p><strong>Formation Day:</strong> {odishaData.formationDay}</p>
-              <p><strong>Old Names:</strong> {odishaData.oldNames}</p>
-              <p><strong>Capital:</strong> {odishaData.capital}</p>
-              <p><strong>Blocks:</strong> {odishaData.Blocks}</p>
-              <p><strong>Tahasil:</strong> {odishaData.Tahasil}</p>
-            </CardContent>
-          </div>
-        </div>
-      </div>
-      {/* Book Pages */}
-      <div className="book">
-        <div
-          className="page-spread-container"
-          style={{ transform: `translateX(-${currentPage * 100}%)` }}
-        >
-          {pages.map((spread, idx) => (
-            <div key={idx} className="page-spread">
-              <div className="page page-left">
-                {renderCategory(spread.left, "left")}
-              </div>
-              <div className="page page-right">
-                {spread.right && renderCategory(spread.right, "right")}
+          return (
+            <div key={index} className="col-md-6 mb-4">
+              <div
+                onClick={() => openModal(category)}
+                className="p-4 rounded shadow-sm h-100"
+                
+                style={{
+                  background: `linear-gradient(to bottom right, ${getLightColor()}, white)`,
+                  borderLeft: "4px solid #005ad7",
+                  cursor: "pointer",
+                  transition: "0.3s",
+                }}
+
+                onMouseEnter={(e)=> e.currentTarget.style.transform="scale(1.02)"}
+                onMouseLeave={(e)=> e.currentTarget.style.transform="scale(1)"}
+              >
+                <h5 className="fw-bold mb-3 d-flex align-items-center">
+                  <FaCheckCircle className="me-2 text-primary" /> {category.title}
+                </h5>
+
+                <ul className="list-unstyled">
+                  {preview.map((i, k) => (
+                    <li key={k} style={{ fontSize: "16.5px" }}>
+                      <strong>{i.label}:</strong> {i.value}
+                    </li>
+                  ))}
+                </ul>
+
+                <p className="text-primary fw-semibold mt-3 mb-1">View Full Details →</p>
               </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
 
-      {/* Controls */}
-      <div className="book-controls">
-        <button onClick={prevPage} disabled={currentPage === 0}>
-          ← Previous
-        </button>
-        <span>
-          Page {currentPage + 1} of {pages.length}
-        </span>
-        <button
-          onClick={nextPage}
-          disabled={currentPage === pages.length - 1}
-        >
-          Next →
-        </button>
-      </div>
+      {/* ========================= MODAL ========================= */}
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <Box sx={style}>
+
+          {/* HEADER */}
+          <div
+            style={{
+              padding: "18px 25px",
+              background: "#0056d6",
+              color: "white",
+              fontSize: "24px",
+              fontWeight: "700",
+              position: "sticky",
+              top: 0,
+              zIndex: 20,
+              borderBottom: "3px solid rgba(255,255,255,0.4)",
+            }}
+          >
+            {selectedCategory?.title}
+          </div>
+
+          {/* BODY */}
+          <div
+            style={{
+              padding: "30px",
+              maxHeight: "calc(90vh - 75px)",
+              overflowY: "auto",
+              background: "#fafbff",
+              lineHeight: "1.9",
+            }}
+          >
+            {/* MULTI COLUMN CONTENT */}
+            <div
+              style={{
+                columns: "300px 3",
+                columnGap: "22px",
+              }}
+            >
+              {selectedCategory?.items?.map((item, i) => (
+                <div
+                  key={i}
+                  style={{
+                    background: "white",
+                    padding: "14px 18px",
+                    borderRadius: "8px",
+                    marginBottom: "18px",
+                    display: "inline-block",
+                    width: "100%",
+                    boxShadow: "0px 2px 10px rgba(0,0,0,0.07)",
+                    borderLeft: "4px solid #0d6efd",
+                  }}
+                >
+                  <strong style={{ color: "#0d6efd" }}>{item.label}:</strong>
+                  <span style={{ fontSize: "16.5px", marginLeft: "6px" }}>{item.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </Box>
+      </Modal>
     </div>
   );
 }
